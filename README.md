@@ -11,7 +11,7 @@
    
    ##### If so you are on the right place!
     
-   * DistractLess App will Firewall you away from your distractions.
+   * distractless App will Firewall you away from your distractions.
    
         * Add a list of banned DNS addresses
         * Add your timetable

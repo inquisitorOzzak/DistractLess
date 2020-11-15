@@ -80,7 +80,7 @@
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false">
-                <preferred-size width="500" height="-1"/>
+                <preferred-size width="450" height="-1"/>
               </grid>
             </constraints>
             <properties/>
@@ -89,7 +89,7 @@
               <component id="2e844" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="-1" height="375"/>
+                    <preferred-size width="390" height="350"/>
                     <maximum-size width="550" height="-1"/>
                   </grid>
                 </constraints>

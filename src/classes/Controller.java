@@ -1,5 +1,6 @@
 package classes;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.Arrays;
 
@@ -11,6 +12,7 @@ public class Controller {
 
     public Controller(){
         osType = System.getProperty("os.name");
+        runWithPrivileges("sudo iptables -L");
     }
 
     public void setProfile(Profile p){
@@ -23,7 +25,12 @@ public class Controller {
     }
 
     public void clear(){
-        //TODO restore original rules... run clean.sh duh
+        this.profile = null;
+        try {
+            Runtime.getRuntime().exec("bash clean.sh");
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     private void getCurrentRules() throws IOException{
@@ -56,7 +63,7 @@ public class Controller {
 
         try {
             //Create the process and start it.
-            Process pb = new ProcessBuilder(bash.split(" ")).redirectOutput(new File("/home/oc-tp/thisconfig.txt")).start();//"/bin/bash", "-c", "/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"}).start();
+            Process pb = new ProcessBuilder(bash.split(" ")).start();//"/bin/bash", "-c", "/usr/bin/sudo -S /bin/cat /etc/sudoers 2>&1"}).start();
             //Runtime.getRuntime().exec(bash);
             output = new OutputStreamWriter(pb.getOutputStream());
             input = new InputStreamReader(pb.getInputStream());
@@ -73,7 +80,7 @@ public class Controller {
                 if (data.contains("[sudo] password")) {
                     // Here you can request the password to user using JOPtionPane or System.console().readPassword();
                     // I'm just hard coding the password, but in real it's not good.
-                    char[]  password = System.console().readPassword();
+                    char[]  password = customPanel();
                     output.write(password);
                     output.write('\n');
                     output.flush();
@@ -85,6 +92,7 @@ public class Controller {
 
             return tryies < 3;
         } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
         return false;
@@ -99,5 +107,26 @@ public class Controller {
         //bash command [list]
         Process process = new ProcessBuilder(domainList.split(" ", 3)).start();
 
+    }
+
+
+    private static char[] customPanel() {
+        {
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel("Enter a password:");
+            JPasswordField pass = new JPasswordField(10);
+            panel.add(label);
+            panel.add(pass);
+            String[] options = new String[]{"OK", "Cancel"};
+            int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                    JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                    null, options, options[1]);
+            if (option == 0) // pressing OK button
+            {
+                return pass.getPassword();
+
+            }
+            return null;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package gui;
 
+import classes.Controller;
 import classes.Profile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ public class DisLess_gui_v7 {
     private JComboBox comboBox1;
 
     private Profile profile;
+    private Controller controller;
 
     public DisLess_gui_v7() {
 
@@ -29,6 +31,7 @@ public class DisLess_gui_v7 {
         // ============================================ //
 
         profile = new Profile();
+        controller = new Controller();
 
         // Open Network Button
         // todo - turn off the app and restore normal firewall
@@ -44,7 +47,7 @@ public class DisLess_gui_v7 {
         distractLessNetworkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controller.setProfile(profile);
             }
         });
 

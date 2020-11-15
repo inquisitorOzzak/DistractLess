@@ -1,7 +1,9 @@
+package classes;
+
 import java.util.ArrayList;
 
 /**
- * Domain Class holding:
+ * classes.Domain Class holding:
  *  String: name
  *  String[]: ip4
  *  String[]: ip6

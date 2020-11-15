@@ -1,10 +1,12 @@
+package classes;
+
 import java.util.ArrayList;
 
 /**
- * Domain Class holding:
+ * classes.Domain Class holding:
  *  String: name
  *  Boolean: blockFlag (Block == True, Allow == False)
- *  Domain[]: domains
+ *  classes.Domain[]: domains
  */
 
 public class Profile {

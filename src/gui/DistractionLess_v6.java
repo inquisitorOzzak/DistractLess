@@ -1,7 +1,10 @@
+package gui;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
+
 
 public class DistractionLess_v6 {
     private JPanel panel1;

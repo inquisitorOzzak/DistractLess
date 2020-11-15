@@ -5,14 +5,14 @@ import java.util.ArrayList;
 /**
  * classes.Domain Class holding:
  *  String: name
- *  String[]: ip4
- *  String[]: ip6
+ *  String[]: ips
  */
 
 
 public class Domain {
+    private Controller controller = new Controller();
     private String name;
-    private ArrayList<String> ip4, ip6;
+    private ArrayList<String> ips;
 
     public String getName(){
         return this.name;
@@ -20,48 +20,41 @@ public class Domain {
 
     public void setName(String name){
         this.name = name;
+        this.digIPs(name);
     }
 
-    public void addIP4(String ip){
-        this.ip4.add(ip);
+    private void addIPs(String ip){
+        this.ips.add(ip);
     }
 
-    public boolean remIP4(String ip){
-        return this.ip4.remove(ip);
+    public ArrayList<String> getIPs(){
+        return this.ips;
     }
 
-    public ArrayList<String> getIP4(){
-        return this.ip4;
-    }
 
-    public void addIP6(String ip){
-        this.ip6.add(ip);
-    }
-
-    public boolean remIP6(String ip){
-        return this.ip6.remove(ip);
-    }
-
-    public ArrayList<String> getIP6(){
-        return this.ip6;
+    private void digIPs(String name){
+        System.out.println("Digging: " + name);
+       this.ips= controller.getIPS(name);
+       System.out.println("Got: " + ips.toString());
     }
 
     public Domain(){
-        this.ip4 = new ArrayList<String>();
-        this.ip6 = new ArrayList<String>();
-        this.name = new String();
+        this("error");
     }
 
     public Domain(String name){
-        this.ip4 = new ArrayList<String>();
-        this.ip6 = new ArrayList<String>();
+        this.digIPs(name);
         this.name = name;
+
     }
 
-    public Domain(String name, ArrayList<String> ip4, ArrayList<String> ip6){
-        this.ip4 = new ArrayList<String>();
-        this.ip6 = new ArrayList<String>();
+    public Domain(String name, ArrayList<String> ips){
+        this.ips = new ArrayList<String>();
         this.name = new String();
+    }
+
+    public String toString(){
+        return this.name + "\n\t" + ips.toString() +"\n";
     }
 
 }

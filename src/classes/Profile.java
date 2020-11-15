@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class Profile {
+    private Controller controller;
     private String name;
     private boolean blockFlag;
     private ArrayList<Domain> domains;
@@ -79,5 +80,9 @@ public class Profile {
         this.domains = domains;
         this.name = name;
         this.blockFlag = blockFlag;
+    }
+
+    public String toString(){
+        return name + "\n" + domains.toString() + "\n\n";
     }
 }

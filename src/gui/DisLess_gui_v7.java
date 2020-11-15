@@ -58,6 +58,7 @@ public class DisLess_gui_v7 {
                 profile.addDomain(input);
                 textArea1.setText(textArea1.getText() + input + "\n" );
                 textField1.setText("");
+                System.out.println(profile.getDomains());
             }
         });
 

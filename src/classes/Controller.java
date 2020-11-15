@@ -2,6 +2,7 @@ package classes;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Controller {
@@ -12,9 +13,26 @@ public class Controller {
 
     public Controller(){
         osType = System.getProperty("os.name");
-        this.runWithPrivileges("sudo iptables -L");
     }
 
+    public ArrayList<String> getIPS(String domain){
+        try {
+            ArrayList<String> ips = new ArrayList();
+            runWithPrivileges("bash iptables -L");
+            Process process = new ProcessBuilder("bash", "ips_from_urls.sh", domain).start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            String s;
+            while ((s = reader.readLine()) != null) {
+                ips.add(s);
+            }
+            return ips;
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     public void setProfile(Profile p){
         this.profile = p;
         try {
@@ -99,6 +117,7 @@ public class Controller {
     }
 
     public void go() throws IOException {
+        this.runWithPrivileges("sudo iptables -L");
         String domainList = "bash block_ips.sh \"";
         for (Domain d: profile.getDomains()){
             domainList = domainList + " " + d.getName();
@@ -111,18 +130,20 @@ public class Controller {
 
 
     private static char[] customPanel() {
-            JPanel panel = new JPanel();
-            JLabel label = new JLabel("Enter a password:");
-            JPasswordField pass = new JPasswordField(10);
-            panel.add(label);
-            panel.add(pass);
-            String[] options = new String[]{"OK", "Cancel"};
-            int option = JOptionPane.showOptionDialog(null, panel, "The title",
-                    JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
-                    null, options, options[1]);
-            if (option == 0)  {// pressing OK button
-                return pass.getPassword();
-            }
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Enter a password:");
+        JPasswordField pass = new JPasswordField(10);
+        panel.add(label);
+        panel.add(pass);
+        String[] options = new String[]{"OK", "Cancel"};
+        int option = JOptionPane.showOptionDialog(null, panel, "The title",
+                JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[1]);
+        if (option == 0) // pressing OK button
+        {
+            return pass.getPassword();
+
+        }
         return null;
     }
 }

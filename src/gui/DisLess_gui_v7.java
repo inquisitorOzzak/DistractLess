@@ -82,11 +82,8 @@ public class DisLess_gui_v7 {
         newProfileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        new gui_pop_up_NewProfile();
-                    }
-                });
+                String name = JOptionPane.showInputDialog(new JFrame(), "Enter Profile Name");
+                System.out.println(name);
             }
         });
 

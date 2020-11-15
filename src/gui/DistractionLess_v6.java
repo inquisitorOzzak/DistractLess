@@ -1,3 +1,7 @@
+package gui;
+
+import classes.Profile;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -60,7 +64,8 @@ public class DistractionLess_v6 {
         aDDButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea1.setText("" + textField1.toString());
+                textArea1.setText(textArea1.getText() + textField1.getText() + "\n" );
+                textField1.setText("");
             }
         });
 

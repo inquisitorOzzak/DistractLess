@@ -99,6 +99,19 @@ public class DisLess_gui_v7 {
 
             }
         });
+
+        // ============================================ //
+        // ============= Action Listener=============== //
+        // ============================================ //
+
+
+
+        comboBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     public static void main(String[] args) {

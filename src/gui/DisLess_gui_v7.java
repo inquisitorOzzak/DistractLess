@@ -1,28 +1,34 @@
 package gui;
 
+import classes.Profile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DisLess_gui_v7 {
     private JPanel panel1;
+
     private JButton openNetworkButton;
     private JButton distractLessNetworkButton;
     private JButton addButton;
     private JButton clearListButton;
     private JButton exitButton;
-    private JTextField textField1;
-    private JTextArea textArea1;
     private JButton newProfileButton;
     private JButton deleteProfileButton;
+
+    private JTextField textField1;
+    private JTextArea textArea1;
     private JComboBox comboBox1;
 
+    private Profile profile;
 
     public DisLess_gui_v7() {
 
         // ============================================ //
         // ================= Buttons ================== //
         // ============================================ //
+
+        profile = new Profile();
 
         // Open Network Button
         // todo - turn off the app and restore normal firewall
@@ -48,7 +54,9 @@ public class DisLess_gui_v7 {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea1.setText(textArea1.getText() + textField1.getText() + "\n" );
+                String input = textField1.getText();
+                profile.addDomain(input);
+                textArea1.setText(textArea1.getText() + input + "\n" );
                 textField1.setText("");
             }
         });

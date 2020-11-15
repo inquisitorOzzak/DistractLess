@@ -52,6 +52,12 @@ public class Domain {
         this.name = new String();
     }
 
+    public Domain(String name){
+        this.ip4 = new ArrayList<String>();
+        this.ip6 = new ArrayList<String>();
+        this.name = name;
+    }
+
     public Domain(String name, ArrayList<String> ip4, ArrayList<String> ip6){
         this.ip4 = new ArrayList<String>();
         this.ip6 = new ArrayList<String>();

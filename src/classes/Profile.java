@@ -30,8 +30,8 @@ public class Profile {
         return this.blockFlag;
     }
 
-    public boolean addDomain(Domain domain){
-        this.domains.add(domain);
+    public boolean addDomain(String domain){
+        this.domains.add(new Domain(domain));
         return true; //TODO edit this to check if domain exists and has all current IPS's -> return false if no update made
     }
 

@@ -63,10 +63,16 @@ public class Profile {
         this.blockFlag = true;
     }
 
-    public Profile(Profile inprof){
-        this.domains = inprof.domains;
-        this.name = inprof.name;
-        this.blockFlag = inprof.blockFlag;
+    public Profile(String name){
+        this.domains = new ArrayList<Domain>();
+        this.name = name;
+        this.blockFlag = true;
+    }
+
+    public Profile(Profile inProfile){
+        this.domains = inProfile.domains;
+        this.name = inProfile.name;
+        this.blockFlag = inProfile.blockFlag;
     }
 
     public Profile(String name, ArrayList<Domain> domains, boolean blockFlag){

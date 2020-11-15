@@ -17,7 +17,11 @@ public class Controller {
         this.profile = p;
     }
 
-    public void getCurrentRules() throws IOException{
+    public void clear(){
+        //TODO restore original rules... run clean.sh duh
+    }
+
+    private void getCurrentRules() throws IOException{
         currentRules = getRules();
     }
 
@@ -39,7 +43,7 @@ public class Controller {
         return rules;
     }
 
-    public static boolean runWithPrivileges(String bash) {
+    private static boolean runWithPrivileges(String bash) {
         InputStreamReader input;
         OutputStreamWriter output;
 

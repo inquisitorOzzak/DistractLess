@@ -12,7 +12,7 @@ public class Controller {
 
     public Controller(){
         osType = System.getProperty("os.name");
-        runWithPrivileges("sudo iptables -L");
+        this.runWithPrivileges("sudo iptables -L");
     }
 
     public void setProfile(Profile p){
@@ -111,7 +111,6 @@ public class Controller {
 
 
     private static char[] customPanel() {
-        {
             JPanel panel = new JPanel();
             JLabel label = new JLabel("Enter a password:");
             JPasswordField pass = new JPasswordField(10);
@@ -121,12 +120,9 @@ public class Controller {
             int option = JOptionPane.showOptionDialog(null, panel, "The title",
                     JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, options, options[1]);
-            if (option == 0) // pressing OK button
-            {
+            if (option == 0)  {// pressing OK button
                 return pass.getPassword();
-
             }
-            return null;
-        }
+        return null;
     }
 }

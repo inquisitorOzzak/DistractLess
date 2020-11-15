@@ -34,16 +34,14 @@ public class DisLess_gui_v7 {
         controller = new Controller();
 
         // Open Network Button
-        // todo - turn off the app and restore normal firewall
         openNetworkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                controller.clear();
             }
         });
 
         // Distractless Network Button
-        // todo - turn on the app firewall
         distractLessNetworkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +51,6 @@ public class DisLess_gui_v7 {
 
 
         // Add Button
-        // todo - sent the strings to the backend
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,7 +114,7 @@ public class DisLess_gui_v7 {
         // ============================================ //
 
 
-
+        // TODO -
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

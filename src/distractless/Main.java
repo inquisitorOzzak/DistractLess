@@ -1,4 +1,4 @@
-package DistractLess;
+package distractless;
 
 public class Main {
 

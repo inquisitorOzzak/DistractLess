@@ -15,6 +15,11 @@ public class Controller {
 
     public void setProfile(Profile p){
         this.profile = p;
+        try {
+            this.go();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void clear(){
@@ -39,6 +44,8 @@ public class Controller {
             while ((s = reader.readLine()) != null) {
                 rules = rules + s;
             }
+        } else {
+            return "Not yet implemented...";
         }
         return rules;
     }
@@ -81,5 +88,16 @@ public class Controller {
         }
 
         return false;
+    }
+
+    public void go() throws IOException {
+        String domainList = "bash block_ips.sh \"";
+        for (Domain d: profile.getDomains()){
+            domainList = domainList + " " + d.getName();
+        }
+        domainList += "\"";
+        //bash command [list]
+        Process process = new ProcessBuilder(domainList.split(" ", 3)).start();
+
     }
 }

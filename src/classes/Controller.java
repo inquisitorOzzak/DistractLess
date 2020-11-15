@@ -1,9 +1,6 @@
 package classes;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.Arrays;
 
 public class Controller {
@@ -20,12 +17,26 @@ public class Controller {
         this.profile = p;
     }
 
-    public void getCurrentRules(){
-        currentRules = null;
+    public void getCurrentRules() throws IOException{
+        currentRules = getRules();
     }
 
-    private void setOriginalRules(){
-        originalRules = null;
+    private void setOriginalRules() throws IOException {
+        originalRules = getRules();
+    }
+
+    private String getRules() throws IOException{
+        String rules = "";
+        if (this.osType == "Linux") {
+            Process process = Runtime.getRuntime().exec("bash ../linux/get_current_rules.sh");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            String s;
+            while ((s = reader.readLine()) != null) {
+                rules = rules + s;
+            }
+        }
+        return rules;
     }
 
     public static boolean runWithPrivileges(String bash) {

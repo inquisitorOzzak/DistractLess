@@ -1,5 +1,6 @@
 # Distractless
 
+*NOTE* totally not working right now
 
    #### Distractless App is meant to firewall you from your distractions
  
